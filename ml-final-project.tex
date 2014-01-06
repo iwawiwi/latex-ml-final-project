@@ -18,6 +18,7 @@
 \usepackage{booktabs}
 \usepackage{url}
 \usepackage{amssymb}
+%\usepackage{flushend}
 
 % For citations
 \usepackage{natbib}
@@ -25,6 +26,7 @@
 % For algorithms
 \usepackage{algorithm}
 \usepackage{algorithmic}
+\include{hype}
 
 % As of 2011, we use the hyperref package to produce hyperlinks in the
 % resulting PDF.  If this breaks your system, please commend out the
@@ -53,7 +55,7 @@
 \begin{document} 
 
 \twocolumn[
-\icmltitle{Multi-label Classification using Ensemble-based Extreme Machine Learning}
+\icmltitle{Multi-label Classification using Problem Transformation Approach and Ensemble-based Learning Framework}
 
 % It is OKAY to include author information, even for blind
 % submissions: the style file will automatically remove it for you
@@ -69,7 +71,7 @@
 % You may provide any keywords that you 
 % find helpful for describing your paper; these are used to populate 
 % the "keywords" metadata in the PDF but will not be shown in the document
-\icmlkeywords{boring formatting information, machine learning, ICML}
+\icmlkeywords{ensemble framework, multi-label learning, multi-label classification, problem transformation approach}
 
 \vskip 0.3in
 ]
@@ -77,7 +79,9 @@
 \begin{abstract} 
 %There are two review cycles for ICML 2014, with full paper submissions due on October 4, 2013 and January 31, 2014. Reviewing will be blind to the identities of the authors, and therefore identifying information must not appear in any way in papers submitted for review. Submissions must be in PDF, with an 8 page length limit ( 9 pages are allowed if the 9-th page contains \emph{only} references).
 
-Lorem ipsum dolor sit amet, aliquip molestiae sit id. Pro cu etiam propriae constituto. Persecuti cotidieque ut duo, id veritus accommodare pro. Accusam erroribus in eam, te usu porro delectus reformidans, magna oratio mucius no mei. Duo in audiam principes laboramus, in mel reque pertinacia contentiones, eos cetero luptatum postulant at. Vix everti corpora insolens in. Eu vim facer decore. Nec ei duis eloquentiam, habeo iuvaret complectitur mel te. Eu ius labores propriae, laudem equidem no sea. Veritus delicatissimi eu mel. Ut enim decore eruditi has, eam id harum convenire sententiae.
+%Lorem ipsum dolor sit amet, aliquip molestiae sit id. Pro cu etiam propriae constituto. Persecuti cotidieque ut duo, id veritus accommodare pro. Accusam erroribus in eam, te usu porro delectus reformidans, magna oratio mucius no mei. Duo in audiam principes laboramus, in mel reque pertinacia contentiones, eos cetero luptatum postulant at. Vix everti corpora insolens in. Eu vim facer decore. Nec ei duis eloquentiam, habeo iuvaret complectitur mel te. Eu ius labores propriae, laudem equidem no sea. Veritus delicatissimi eu mel. Ut enim decore eruditi has, eam id harum convenire sententiae.
+
+In this paper, the experiment on multi-label classification using ensemble-based learning framework have been done. Many real world problem can be seen as multi-label classification problem and more difficult to solve than common single-label classification. To overcome this problem, problem transformation approach was adopted. A new voting scheme for ensemble system also proposed. Several weak classifier such as Support Vector Machines (SVM), decision tree, and Extreme Learning Machine (ELM) are included in the experiment. The system then evaluated using some publicly multi-label classification dataset and several performance metrics such as Hamming loss, accuracy, precision, and recall.
 
 \end{abstract} 
 
@@ -89,7 +93,7 @@ Lorem ipsum dolor sit amet, aliquip molestiae sit id. Pro cu etiam propriae cons
 
 Classification can be seen as the function mapping problem $f\colon x \mapsto y$, with $x$ denoted the attributes or features of the data and $y$ denoted the target class with respect to input $x$. In common case, $x$ can have a high dimensional size and $y$ is one dimensional. If $y \in \{0,1\}$, it is called a \textit{binary classification} problem. In other word, the binary classification dealt with problem that only have two possible target value: positive (true) or negative (false). If $y \in \{L_1,L_2,\dots,L_N\}$ and $|N| > 1$, the problem is called a \textit{multi-class classification} problem. In multi-class classification problem, there are many (more than one) possible target value. On the other side, in multi-label classification, the target $y \subseteq \{L_1,L_2\dots,L_N\}$, where $|N| > 1$. In other word, the dimension of target $y$ can also have one or a high dimensional size because the possible value of the target is the subset of all possible label.
 
-Multi-label classification are increasingly required by current modern application. Many real world problem can be categorized as multi-label classification problem. Music categorization is one example of such problem. In the problem of music categorization, a song or music can be categorized into one or more music genre. For example, the song titled \textit{100\%}--performed by Mariah Carey, can be categorized into \textit{R\&B}, \textit{soul} and \textit{gospel} song category \footnote{\url{http://en.wikipedia.org/wiki/100\%25\_\%28Mariah\_Carey\_song\%29}}. Some other application of multi-label classification including text categorization, functional genomics, and scene classification.
+Multi-label classification are increasingly required by current modern application. Many real world problem can be categorized as multi-label classification problem. Music categorization is one example of such problem. In the problem of music categorization, a song or music can be categorized into one or more music genre. For example, the song titled \textit{100\%}--performed by Mariah Carey, can be categorized into \textit{R\&B}, \textit{soul} and \textit{gospel} song category \footnote{\url{http://en.wikipedia.org/wiki/100\%25\_\%28Mariah\_Carey\_song\%29}}. Some other application of multi-label classification including text categorization, functional genomes, scene classification, and other automatic recommendation system.
 
 Multi-label classification problem is more difficult to solve than single-label one, either binary or multi-class classification \cite{Zhang2007}. Several literature have been conducted an overview on some approaches in order to dealt with multi-label learning problem such as work by \cite{Tsoumakas2007} and \cite{Madjarov2012}. In their works, \cite{Tsoumakas2007} have been summarized some of approaches in the multi-label classification problem and categorized them into two categories, (a) problem transformation method and (b) algorithm adaptation method. Later, \cite{Madjarov2012} extend these categories by including (c) ensemble method approach.
 
@@ -100,7 +104,13 @@ In this paper, the experiment on multi-label learning system which is based on t
 \section{Previous Work}
 \label{related}
 
-Multi-label classification problem has attracted several researcher for over past  ten years. \cite{Zhang2007} have been proposed a multi-label classification technique based on infamous $k$NN method named ML-$k$NN....
+Multi-label classification problem has attracted several researcher for over past  ten years. \cite{Zhang2007} have been proposed a multi-label classification technique based on infamous $k$NN ($k$-Nearest Neighbor) method and named as ML-$k$NN. It is claimed that ML-$k$NN was the first multi-label lazy learning algorithm. As its name, ML-$k$NN used the $k$NN to identify $k$-Nearest Neighbors of test instance by using prior probabilities. Then, by using Maximum a Posteriori (MAP), label set for test instance are determined by system.
+
+Work by \cite{Balasubramanian2012} made an approach to model a multi output prediction by selecting a small subset of the data label, and then partially modeling the relationship of data and labels through this small subset of label. These small subset of label is called the landmark variable. The landmark variable set are obtained via least-squares regression with group Lasso based hierarchical regularization. 
+
+An ensemble method approaches for solving the problem of multi-label classification have been proposed by \cite{Read2011}. Binary relevance method (a problem transformation approach) are used to model the multi-label problem. Then, ensemble of classifier chain method (ECC) are used as the classifier. Classifier chain method is somewhat similar to binary relevance method. It transform multi-label classification problem, into several single-label binary classification problem. Each single-label binary are augmented with previously known label, in order to get the relationship of each label.
+
+In music categorization problem, \cite{Trohidis2008} compared the classification performance between problem transformation (accompanied by SVM classifier) and algorithm adaptation approach. Based on their work, the problem transformation approach have a better performance than algorithm adaptation method in order to solve music categorization problem. 
 
 
 \section{Preliminaries}
@@ -131,7 +141,7 @@ There are 4 important component in the ensemble framework system \cite{Rokach201
 \item Combiner--The component that responsible to combine all hypotheses made by all the inducer hypotheses in the ensemble system.
 \end{itemize}
 
-Through the ensemble system, we can form a final hypotheses whose performance is better than all the individual weak classifier in the system \cite{Rokach2010}. This is based on the well-known Condrocet's jury theorem, "If each voter has a probability $p$ of being correct and the probability of a majority of voters being correct is $L$, then $p > 0.5$ implies $L > p$ and also $L$ approaches $1$, for all $p > 0.5$ as the number of voters approcahes infinity". There are several famous method in ensemble system, it is include
+Through the ensemble system, we can form a final hypotheses whose performance is better than all the individual weak classifier in the system \cite{Rokach2010}. This is based on the well-known Condrocet's jury theorem, "If each voter has a probability $p$ of being correct and the probability of a majority of voters being correct is $L$, then $p > 0.5$ implies $L > p$ and also $L$ approaches $1$, for all $p > 0.5$ as the number of voters approaches infinity". Currently, there exist several method in ensemble system such as, bagging, boosting, stacked generalization, and mixture of expert.
 
 %Eu vim facer decore. Nec ei duis eloquentiam, habeo iuvaret complectitur mel te. Eu ius labores propriae, laudem equidem no sea. Veritus delicatissimi eu mel. Ut enim decore eruditi has, eam id harum convenire sententiae.
 
@@ -139,6 +149,7 @@ Through the ensemble system, we can form a final hypotheses whose performance is
 \section{System Overview}
 \label{overview}
 
+\subsection{Multi-label Ensemble System}
 Before the data is trained, problem transformation approach are applied on the data. For example, if we have two data example $A$ and $B$, $A$ is labeled with $\{1,2\}$ and $B$ is labeled with $\{1,3,4\}$, the transformed data will consist total 5 data. The illustration of the example of this transformed data can be seen on Table \ref{tab:transformation}.
 
 \begin{table}[t]
@@ -168,7 +179,44 @@ $B$ 	& 4 \\
 \vskip -0.1in
 \end{table}
 
-Then from these The proposed ensemble system is using bagging method to build each weak learner model. 
+Then from these transformed dataset, to obtain a diverse and independent output, bagging method are applied on each weak classifier to build its model. For the testing phase, hypotheses generated by each weak classifier on the ensemble system are recorded and counted. Final decision of the multi-label target are all the voting value that exceeds the threshold value that computed from following formula:
+
+\begin{equation}
+T = \max{H_L} \times (1 - \alpha)
+\end{equation}
+
+\noindent where $T$ is the threshold value of voting system, $H_L$ is the vector array containing the current ensemble voting histogram for each possible label, and $\alpha$ is some constant (coefficient) value from 0 to 1. Zero value of $\alpha$ implies that all hypotheses of each weak learner are selected as ensemble system final decision. At the end, we have some label that satisfy those condition as the output of the ensemble system. 
+
+\subsection{Performance Evaluation}
+The multi-label classification performance of ensemble system then is evaluated using several evaluation metrics such as, accuracy, precision, recall, and Hamming loss. Following equation are used to compute those evaluation metrics \cite{Tsoumakas2007}:
+
+\begin{itemize}
+\item Accuracy---indicate how accurate the prediction from the target set. The higher value means better performance. Value of 1 means perfect prediction.
+\begin{equation}
+\label{eq:accu}
+\mbox{Accuracy} = \frac{1}{N} \sum_{1}^{N} \frac{|Y_i \cap H_i|}{|Y_i \cup H_i|}
+\end{equation}
+
+\item Precision---similar to accuracy metrics, the higher value means better performance
+\begin{equation}
+\label{eq:prec}
+\mbox{Precision} = \frac{1}{N} \sum_{1}^{N} \frac{|Y_i \cap H_i|}{|H_i|}
+\end{equation}
+
+\item Recall---similar to accuracy metrics, the higher value means better performance
+\begin{equation}
+\label{eq:reca}
+\mbox{Recall} = \frac{1}{N} \sum_{1}^{N} \frac{|Y_i \cap H_i|}{|Y_i|}
+\end{equation}
+
+\item Hamming Loss---indicate how many target are misclassified by hypotheses. The lower value means better performance
+\begin{equation}
+\label{eq:hlos}
+\mbox{Hamming loss} = \frac{1}{N} \sum_{1}^{N} \frac{|Y_i \Delta H_i|}{|L|}
+\end{equation}
+\end{itemize}
+
+\noindent where $N$ is the length of multi-label data example, $Y_i$ denote true label-set of each example, $H_i$ denote the label-set prediction produced by system for each example, $|\bullet|$ denote the cardinality operator, and $\Delta$ denotes the symmetric difference operator (similar to XOR boolean operator).
 
 %Minim dolorem convenire sit ne, veniam everti labores mel ut, vim aperiam laboramus id. Lorem tractatos sed ea \cite{Zhang2007}. Mucius verterem te qui, sed malorum maiestatis dissentias ei \cite{Read2011}. Probo paulo doming ne vix, ius oratio sententiae in. In quem vero velit vis, mea accusata scribentur vituperatoribus ei. Aperiam mnesarchum nec at, vel ea aliquip ornatus. Mea efficiendi definitionem et, tritani erroribus sit et \cite{Trohidis2008}.
 
@@ -189,8 +237,10 @@ Then from these The proposed ensemble system is using bagging method to build ea
 \section{Experiment and Discussion}
 \label{expr}
 
-\subsection{Experiment on Public Datasets}
-Several public datasets available on the Internet have been used as the experiment for ensemble system that have been developed. There are 3 different datasets for multi-label classification that are used on the experiment. These dataset is publicly available on MULAN website\footnote{\url{http://mulan.sourceforge.net/datasets.html}}. Table \ref{tab:dataset} show the overview of the dataset used in the experiment.
+\subsection{Experiment on Various Public Datasets}
+\label{expr1}
+
+Several public datasets available on the Internet have been used as the experiment for ensemble system that have been developed. There are three different datasets for multi-label classification that are used for the experiment. These dataset is publicly available on MULAN website\footnote{\url{http://mulan.sourceforge.net/datasets.html}}. Including the ensemble of ELM, two other different ensemble system are build in order to compare their performance on each dataset. An experiment by varying the number of weak classifier on ensemble system also performed in this experiment. Table \ref{tab:dataset} show the overview of the dataset used in the experiment.
 
 \begin{table}[t]
 \caption{Comparison overview of several multi label dataset used in experiment.}
@@ -221,28 +271,104 @@ Yeast    	& 2417 & 14 & 4.237 \\
 \vskip 0.2in
 	\begin{subfigure}{}
 	\centering
-		\includegraphics[width=2.1in]{assets/[EMOTION][1]accuracy_profile_@10-fold_cv.png}
-		\includegraphics[width=2.1in]{assets/[EMOTION][1]precision_profile_@10-fold_cv.png}
-		\includegraphics[width=2.1in]{assets/[EMOTION][1]recall_profile_@10-fold_cv.png}
-		\includegraphics[width=2.1in]{assets/[SCENE][1]accuracy_profile_@10-fold_cv.png}
-		\includegraphics[width=2.1in]{assets/[SCENE][1]precision_profile_@10-fold_cv.png}
-		\includegraphics[width=2.1in]{assets/[SCENE][1]recall_profile_@10-fold_cv.png}
-		\includegraphics[width=2.1in]{assets/[YEAST][1]accuracy_profile_@10-fold_cv.png}
-		\includegraphics[width=2.1in]{assets/[YEAST][1]precision_profile_@10-fold_cv.png}
-		\includegraphics[width=2.1in]{assets/[YEAST][1]recall_profile_@10-fold_cv.png}
-		\caption{Accuracy (left column), precision (midlle column), and recall (right column) profile of bagging ELM, bagging SVM, and bagging decision stump for dataset \texttt{EMOTION} (upper row), \texttt{SCENE} (middle row), and \texttt{YEAST} (bottom row). System evaluated by using 10-fold cross validation scheme.}
+		\includegraphics[height=1.5in]{assets/[EMOTION]accuracy_profile_@10-fold_cv.pdf}
+		\includegraphics[height=1.5in]{assets/[EMOTION]precision_profile_@10-fold_cv.pdf}
+		\includegraphics[height=1.5in]{assets/[EMOTION]recall_profile_@10-fold_cv.pdf}
+		\includegraphics[height=1.5in]{assets/[SCENE]accuracy_profile_@10-fold_cv.pdf}
+		\includegraphics[height=1.5in]{assets/[SCENE]precision_profile_@10-fold_cv.pdf}
+		\includegraphics[height=1.5in]{assets/[SCENE]recall_profile_@10-fold_cv.png}
+		\includegraphics[height=1.5in]{assets/[YEAST]accuracy_profile_@10-fold_cv.pdf}
+		\includegraphics[height=1.5in]{assets/[YEAST]precision_profile_@10-fold_cv.png}
+		\includegraphics[height=1.5in]{assets/[YEAST]recall_profile_@10-fold_cv.pdf}
+		\caption{Accuracy (left column), precision (middle column), and recall (right column) profile of bagging ELM, bagging SVM, and bagging decision stump for dataset \textsc{Emotion} (upper row), \textsc{Scene} (middle row), and \textsc{Yeast} (bottom row). System evaluated by using 10-fold cross validation scheme.}
+		\label{fig:experiment1}
+	\end{subfigure}
+\vskip -0.2in
+\end{figure*} 
+
+\begin{figure*}[htbp!]
+%\vskip 0.7in
+\vskip 0.2in
+	\begin{subfigure}{}
+	\centering
+		\includegraphics[height=1.5in]{assets/[EMOTION]train_time_profile.pdf}
+		\includegraphics[height=1.5in]{assets/[SCENE]train_time_profile.pdf}
+		\includegraphics[height=1.5in]{assets/[YEAST]train_time_profile.pdf}
+		\caption{Training time profile (excluding the problem transform process) of each ensemble system for the variation of number of weak classifier. The system are trained using 100\% example from dataset \textsc{Emotion}.}
+		\label{fig:experiment1b}
+	\end{subfigure}
+%\vskip -0.2in
+%\vskip 0.5in
+\end{figure*}
+
+Based on Figure \ref{fig:experiment1}, in term of accuracy performance metrics, bagging method that use SVM as the weak classifier produce a better performance than any other method on dataset \textsc{Emotion} and \textsc{Scene}. The three bagging method perform at the same level performance on \textsc{Yeast} dataset. The bagging of ELM seems to have a rather "stable" performance, not always the best and the worst in term of precision evaluation metrics. But, ELM made an inferior performance, in term of accuracy and recall, on dataset \textsc{Emotion}.
+
+It also can be seen from Figure \ref{fig:experiment1} that the as more number of estimator or weak classifier are increased, the performance tend to not have a significant difference. In contrast despite of its increased performance, as seen in Figure \ref{fig:experiment1b}, the computation time of training the ensemble also increasing, especially for the ensemble of SVM that are tend to increase significantly as the number of its weak classifier increases. But, the training time of ensemble of decision stump and ELM are not significantly increased. Because of ensemble voting mechanism, the number of weak classifier are encouraged to equal or more than total label in the dataset. It is because of in the worst case where the data contain all target output, $y = \{L_1,L_2,\dots,L_N\}$, would be each classifier predicting all different labels. So, for larger dataset it recommended to use ELM as the weak classifier.
+
+
+\begin{figure*}[htpb!]
+\vskip 0.2in
+	\begin{subfigure}{}
+	\centering
+		\includegraphics[width=2.5in]{assets/[EMOTION]acc_conf.pdf}
+		\includegraphics[width=2.5in]{assets/[EMOTION]prec_conf.pdf}
+		\includegraphics[width=2.5in]{assets/[EMOTION]rec_conf.pdf}
+		\includegraphics[width=2.5in]{assets/[EMOTION]hloss_conf.pdf}
+		\caption{Accuracy (top left), precision (top right), recall (bottom left), and Hamming loss (bottom right) profile of bagging ELM (red bar--middle of bins), bagging SVM (green bar--rightmost of bis), and bagging decision stump (blue bar--leftmost of bins) for dataset \textsc{Emotion} for different confidence level of threshold coefficient $\alpha$. System evaluated by using 10-fold cross validation scheme.}
+		\label{fig:experiment2}
+	\end{subfigure}
+\vskip -0.2in
+\end{figure*}
+
+\begin{figure*}[htpb!]
+\vskip 0.2in
+	\begin{subfigure}{}
+	\centering
+		\includegraphics[width=2.5in]{assets/[SCENE]acc_conf.pdf}
+		\includegraphics[width=2.5in]{assets/[SCENE]prec_conf.pdf}
+		\includegraphics[width=2.5in]{assets/[SCENE]rec_conf.pdf}
+		\includegraphics[width=2.5in]{assets/[SCENE]hloss_conf.pdf}
+		\caption{Accuracy (top left), precision (top right), recall (bottom left), and Hamming loss (bottom right) profile of bagging ELM (red bar--middle of bins), bagging SVM (green blue bar--rightmost of bis), and bagging decision stump (blue bar--leftmost of bins) for dataset \textsc{Scene} for different confidence level of threshold coefficient $\alpha$. System evaluated by using 10-fold cross validation scheme.}
+		\label{fig:experiment2b}
 	\end{subfigure}
 \vskip -0.2in
 \end{figure*} 
 
 \subsection{Experiment on Selection of Ensemble Decision}
-Exerci reformidans nam no, has et error impedit omittantur. Ei hinc senserit qui. Ea qui duis justo primis, vide consul eam id, odio justo detraxit no eos. Fastidii gloriatur vis id. Pri noster reprimique vituperatoribus ea, vis ut altera gloriatur. Viderer omittam indoctum in pro.
+\label{expr2}
+
+%Exerci reformidans nam no, has et error impedit omittantur. Ei hinc senserit qui. Ea qui duis justo primis, vide consul eam id, odio justo detraxit no eos. Fastidii gloriatur vis id. Pri noster reprimique vituperatoribus ea, vis ut altera gloriatur. Viderer omittam indoctum in pro.
+
+The second experiment are done in order to know the effect of choosing the threshold coefficient $\alpha$ to the overall performance of ensemble system. It is because, the $\alpha$ coefficient will have a contribution in the output of ensemble prediction. Figure \ref{fig:experiment2} and Figure \ref{fig:experiment2b} show the experiment result of variation of $\alpha = \{0, 0.1, 0.5, 0.9\}$ on dataset \textsc{Emotion} and \textsc{Scene} respectively. The number of weak classifier used are 15, greater than 6---total possible label of dataset.
+
+%\begin{figure*}[ht]
+%\vskip 0.2in
+%	\begin{subfigure}{}
+%	\centering
+%		\includegraphics[width=2.5in]{assets/acc_conf.pdf}
+%		\includegraphics[width=2.5in]{assets/prec_conf.pdf}
+%		\includegraphics[width=2.5in]{assets/rec_conf.pdf}
+%		\includegraphics[width=2.5in]{assets/hloss_conf.pdf}
+%		\caption{Accuracy (top left), precision (top right), recall (bottom left), and Hamming loss (bottom right) profile of bagging ELM (yellow bar--middle of bins), bagging SVM (dark blue bar--rightmost of bis), and bagging decision stump (red bar--leftmost of bins) for dataset \textsc{Emotion} for different confidence level of threshold coefficient $\alpha$. System evaluated by using 10-fold cross validation scheme.}
+%		\label{fig:experiment2}
+%	\end{subfigure}
+%\vskip -0.2in
+%\end{figure*} 
+
+From Figure \ref{fig:experiment2} and Figure \ref{fig:experiment2b} it can be seen that, as the value of coefficient $\alpha$ increase, the Hamming loss value are increasing too. So, it means that there is a degradation of performance in term of Hamming loss evaluation metrics. This phenomena may be occurred because of many incorrect label generated from the system that have implication of increasing the value of Hamming loss metrics. The recall performance is increased as the value of $\alpha$ increase, but not for the precision and accuracy metrics. It may happen because of the hypotheses can make a better diversity and correctly predict more target output, but because of too many incorrect label produced, the value of accuracy and precision seem to have no improvement. From this experiment we can conclude that, if the coefficient $\alpha$ are close to $1$, it means that the ensemble system would output all each diverse prediction of each weak classifier. It may trigger a bad decision of output labels. So, it must be consider not to choose the $\alpha$ value that is close to $1$.
+
+%\subsection{Performance Comparison to Other Existing Method}
+%\label{comparison}
+
+%Ex corpora platonem omittantur duo, pri semper efficiantur an. Adipisci constituam eam cu, graece legendos nominati ad sed, pri ea suas delicata. Purto oratio in quo, vis ocurreret forensibus at. Ut placerat definiebas est, vix no sumo epicurei electram, postea regione blandit qui at. Labitur intellegebat voluptatibus ius ea. Ex has purto solum, eum phaedrum efficiantur ut. Et nec facer soluta cetero, ad integre rationibus est.
 
 
 \section{Conclusions}
 \label{conculsion}
 
-Ex corpora platonem omittantur duo, pri semper efficiantur an. Adipisci constituam eam cu, graece legendos nominati ad sed, pri ea suas delicata. Purto oratio in quo, vis ocurreret forensibus at. Ut placerat definiebas est, vix no sumo epicurei electram, postea regione blandit qui at. Labitur intellegebat voluptatibus ius ea. Ex has purto solum, eum phaedrum efficiantur ut. Et nec facer soluta cetero, ad integre rationibus est.
+%Ex corpora platonem omittantur duo, pri semper efficiantur an. Adipisci constituam eam cu, graece legendos nominati ad sed, pri ea suas delicata. Purto oratio in quo, vis ocurreret forensibus at. Ut placerat definiebas est, vix no sumo epicurei electram, postea regione blandit qui at. Labitur intellegebat voluptatibus ius ea. Ex has purto solum, eum phaedrum efficiantur ut. Et nec facer soluta cetero, ad integre rationibus est.
+
+Multi-label classification is interesting issue in machine learning. Ensemble of ELM are expected to be a good choice as a weak learner for ensemble system, but based on the experiment on real world dataset, the performance of ELM are below expectation. But the interesting thing here, because of fast training time, the ensemble of ELM is very potential and promising for further research. There are also some limitation in the ensemble system that have been developed such as, the computational cost is very huge for large number of label in the problem set. Further analysis of the voting system need to be done in order to make a better performance of ensemble system. 
 
 %\section{Electronic Submission}
 %\label{submission}
@@ -486,6 +612,7 @@ Ex corpora platonem omittantur duo, pri semper efficiantur an. Adipisci constitu
 % references without citing it in the main text, use \nocite
 %\nocite{langley00}
 
+%\newpage
 \bibliography{biblio}
 \bibliographystyle{icml2014}
 
